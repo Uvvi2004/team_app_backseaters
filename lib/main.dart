@@ -9,25 +9,44 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool isBlueTheme = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Team Backseaters'),
-        backgroundColor: Colors.blue,
+        backgroundColor: isBlueTheme ? Colors.blue : Colors.green,
       ),
-      body: const Center(
-        child: ProfileCard(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const ProfileCard(),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                isBlueTheme = !isBlueTheme;
+              });
+            },
+            child: const Text('Switch Theme'),
+          ),
+        ],
       ),
     );
   }
