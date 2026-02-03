@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,6 +27,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isBlueTheme = true;
 
+  
+  final List<String> quotes = [
+    "Believe in yourself.",
+    "Small progress is still progress.",
+    "Rome wasnt built in one day" ,
+    "Shrimp that fell asleep get taken by the current"
+  ];
+
+  String currentQuote = "Believe in yourself.";
+  final Random random = Random();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +50,31 @@ class _HomePageState extends State<HomePage> {
         children: [
           const ProfileCard(),
           const SizedBox(height: 20),
+
+          // ✅ Quote display
+          Text(
+            currentQuote,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 16,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          // ✅ Button to rotate quotes
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                currentQuote = quotes[random.nextInt(quotes.length)];
+              });
+            },
+            child: const Text('New Quote'),
+          ),
+
+          const SizedBox(height: 20),
+
+          // ✅ Theme switch button
           ElevatedButton(
             onPressed: () {
               setState(() {
