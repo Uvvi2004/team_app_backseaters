@@ -37,7 +37,9 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const ProfileCard(),
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
+          const IconGallery(),
+          const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () {
               setState(() {
@@ -83,6 +85,28 @@ class ProfileCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class IconGallery extends StatelessWidget {
+  const IconGallery({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const [
+        Icon(Icons.music_note, size: 32, color: Colors.blue),
+        SizedBox(width: 16),
+        Icon(Icons.sports_basketball, size: 32, color: Colors.orange),
+        SizedBox(width: 16),
+        Icon(Icons.code, size: 32, color: Colors.green),
+        SizedBox(width: 16),
+        Icon(Icons.movie, size: 32, color: Colors.red),
+        SizedBox(width: 16),
+        Icon(Icons.travel_explore, size: 32, color: Colors.purple),
+      ],
     );
   }
 }
